@@ -1,0 +1,1 @@
+URLS = "https://duunitori.fi/tyopaikat?filter_work_relation=summer_job"
