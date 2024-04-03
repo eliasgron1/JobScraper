@@ -13,13 +13,25 @@ class Duunitori_Scraper:
     def scrape_listing_link(self, listing):
         job_link = listing.find("a").get("href")
         return job_link
+    
+
+    def scrape_listing_location(self, listing):
+        location = listing.find(class_="job-box__content")
+        location_box = location.find(class_="job-box__job-location")
+        location_text = location_box.get_text()
+        return location_text.strip()
 
 
     def scrape_company_name(self, listing):
         company_name = listing.find('a').get('data-company')
         return company_name
+    
 
-            
+    def scrape_listing_date(self, listing):
+        listing_date = listing.find(class_="job-box__content").find(class_="job-box__job-posted").get_text()
+        return listing_date
+
+
     def scrape_page_html(self):
         jobs = self.soup.find(class_="grid-sandbox grid-sandbox--tight-bottom grid-sandbox--tight-top")
         page_html = jobs.findAll(class_="job-box")
